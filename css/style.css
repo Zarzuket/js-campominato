@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+#campo{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+}
+
+.quadrato{
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    border: 2px solid black;
+}
+
+.quadrato.red{
+    background-color: red;
+}
