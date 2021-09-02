@@ -35,13 +35,23 @@ while(isNaN(squareUtente)){
 
 xSquare(squareUtente);
 
+var squareClicked = [];
 
 document.getElementById("campo").addEventListener("click" ,
     function(event){
         event.target.classList.add("red" , "clicked");
-        alert(event.target.innerHTML)
-    }
+        
+        var quadrato = parseInt(event.target.innerHTML);
+        if (squareClicked.includes(quadrato)){
+            alert("casella già cliccata");
+        } else {
+            squareClicked.push(quadrato); // solo se clicca un quadrato,non bomba
+            alert(event.target.innerHTML)
+        }   console.log(squareClicked)
+  }
 )
+
+
 
 var arrBombs = [];
 
@@ -54,8 +64,9 @@ while (arrBombs.length < 16) {
 
 console.log(arrBombs);
 
-var squareClicked = [];
 
+
+console.log(squareClicked);
 
 
 // var arrBombs = [];
