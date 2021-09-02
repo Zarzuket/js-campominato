@@ -9,7 +9,7 @@
 // Funzione genera campo
 function xSquare(square){
     for( var i=1; i<=square; i++){
-        
+
         document.getElementById("campo").innerHTML += `<div class="quadrato">${i}</div>`
     }
 }
@@ -26,27 +26,42 @@ function randomNumber(min, max) {
 
 // PROGRAMMA PRINCIPALE
 
-// var squareUtente = parseInt(prompt("inserisci un numero da 1 a 100 per creare un campo di quadrati."));
+var squareUtente = parseInt(prompt("inserisci un numero da 1 a 100 per creare un campo di quadrati."));
 
-// while(isNaN(squareUtente)){
-//     squareUtente = parseInt(prompt("devi inseririre un numero da 1 a 100!!"));
-// }
-
-
-// xSquare(squareUtente);
+while(isNaN(squareUtente)){
+    squareUtente = parseInt(prompt("devi inseririre un numero da 1 a 100!!"));
+}
 
 
-// document.getElementById("campo").addEventListener("click" ,
-//     function(event){
-//         event.target.classList.add("red");
-//         alert(event.target.innerHTML)
-//     }
-// )
+xSquare(squareUtente);
+
+
+document.getElementById("campo").addEventListener("click" ,
+    function(event){
+        event.target.classList.add("red" , "clicked");
+        alert(event.target.innerHTML)
+    }
+)
+
+var arrBombs = [];
+
+while (arrBombs.length < 16) {
+    var bomb = arrBombs.push(randomNumber(1,100));
+    if (arrBombs.includes(bomb) == false){
+        arrBombs.push(bomb);
+    }
+}
+
+console.log(arrBombs);
+
+var squareClicked = [];
+
 
 
 // var arrBombs = [];
 
 // for (i=0 ; i<16; i ++) {
+    
 //     arrBombs.push(randomNumber(1,100));
 // }
 
