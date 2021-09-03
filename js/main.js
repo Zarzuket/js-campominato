@@ -20,60 +20,81 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
   }
 
-
-
-
-
-// PROGRAMMA PRINCIPALE
-
-var squareUtente = parseInt(prompt("inserisci un numero da 1 a 100 per creare un campo di quadrati."));
-
-while(isNaN(squareUtente)){
-    squareUtente = parseInt(prompt("devi inseririre un numero da 1 a 100!!"));
+//   Funzione se elemento è dentro l'array
+function inArray(arr,element){
+    var count=0;
+    while ( count < arr.length) {
+        if (arr[count] == element){
+            return true;
+        }
+        count++;
+    }
+    return false;
 }
 
 
-xSquare(squareUtente);
+  
+  // PROGRAMMA PRINCIPALE
+  
+  var squareUtente = parseInt(prompt("inserisci un numero da 1 a 100 per creare un campo di quadrati."));
+  
+  while(isNaN(squareUtente)){
+      squareUtente = parseInt(prompt("devi inseririre un numero da 1 a 100!!"));
+    }
+    
+    var nBombs = 1;
+    var nSquares = squareUtente;
+    var vittoria = nSquares - nBombs;
+    
 
-var squareClicked = [];
+    var arrBombs=[];
+    while (arrBombs.length < nBombs) {
+        var bomb = randomNumber(1,100);
+        if ( inArray(arrBombs,bomb) == false){
+            arrBombs.push(bomb)
+        }
+    }
+    
+    console.log(arrBombs);
+    
 
+    
+    xSquare(squareUtente);
+    
+    var squareClicked = [];
+    
 document.getElementById("campo").addEventListener("click" ,
     function(event){
-        event.target.classList.add("red" , "clicked");
-        
         var quadrato = parseInt(event.target.innerHTML);
-        if (squareClicked.includes(quadrato)){
+        event.target.classList.add("red" , "clicked"); 
+        if (arrBombs.includes(quadrato) === true){
+            alert("hai perso")
+        }       
+        else if (squareClicked.includes(quadrato)){
             alert("casella già cliccata");
-        } else {
-            squareClicked.push(quadrato); // solo se clicca un quadrato,non bomba
-            alert(event.target.innerHTML)
+        } else  {
+            squareClicked.push(quadrato);
+            if(squareClicked.length == vittoria){
+                alert("hai vinto");
+            }
         }   console.log(squareClicked)
   }
 )
 
 
+switch (choiche){
+    case "easy":
+    case  "1":
+        text = ""
+    break;
 
-var arrBombs = [];
+    case "medium":
+    case "2":
+        text= ""
+    break;
 
-while (arrBombs.length < 16) {
-    var bomb = arrBombs.push(randomNumber(1,100));
-    if (arrBombs.includes(bomb) == false){
-        arrBombs.push(bomb);
-    }
-}
-
-console.log(arrBombs);
-
-
-
-console.log(squareClicked);
-
-
-// var arrBombs = [];
-
-// for (i=0 ; i<16; i ++) {
-    
-//     arrBombs.push(randomNumber(1,100));
-// }
-
-// console.log(arrBombs)
+    case "hard":
+    case "3":
+        text = ""
+    break;
+} 
