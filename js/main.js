@@ -36,20 +36,33 @@ function inArray(arr,element){
   
   // PROGRAMMA PRINCIPALE
   
-  var squareUtente = parseInt(prompt("inserisci un numero da 1 a 100 per creare un campo di quadrati."));
+  var difficulty = prompt("Inserisci il livello di dificcoltà con cui vuoi giocare: facile - medio - difficile")
   
-  while(isNaN(squareUtente)){
-      squareUtente = parseInt(prompt("devi inseririre un numero da 1 a 100!!"));
-    }
+
+    switch (difficulty){
+        case "facile":
+        case  "1":
+            nSquares = 100;
+            break;
     
-    var nBombs = 1;
-    var nSquares = squareUtente;
+        case "medio":
+        case "2":
+            nSquares = 80;
+            break;
+    
+        case "difficile":
+        case "3":
+            nSquares = 50;
+            break;
+    } 
+
+    var nBombs = 16;
     var vittoria = nSquares - nBombs;
     
 
     var arrBombs=[];
     while (arrBombs.length < nBombs) {
-        var bomb = randomNumber(1,100);
+        var bomb = randomNumber(1,nSquares);
         if ( inArray(arrBombs,bomb) == false){
             arrBombs.push(bomb)
         }
@@ -59,7 +72,7 @@ function inArray(arr,element){
     
 
     
-    xSquare(squareUtente);
+    xSquare(nSquares);
     
     var squareClicked = [];
     
@@ -82,19 +95,3 @@ document.getElementById("campo").addEventListener("click" ,
 )
 
 
-switch (choiche){
-    case "easy":
-    case  "1":
-        text = ""
-    break;
-
-    case "medium":
-    case "2":
-        text= ""
-    break;
-
-    case "hard":
-    case "3":
-        text = ""
-    break;
-} 
